@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	  <Version>1.0.1</Version>
+	  <PackageId>Autorizacion.Flujo.sebasgonzalez26</PackageId>
+	  <Authors>Sebasgonzalez26</Authors>
+	  <Description>Logica de negocio del paquete de autorizacion. Agrega un perfil del usuario como claims al CliamPr</Description>
+	  <RepositoryUrl>https://github.com/SC701</RepositoryUrl>
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
+	  
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Autorizacion.Abstracciones\Autorizacion.Abstracciones.csproj" />
+  </ItemGroup>
+
+
+
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+</Project>

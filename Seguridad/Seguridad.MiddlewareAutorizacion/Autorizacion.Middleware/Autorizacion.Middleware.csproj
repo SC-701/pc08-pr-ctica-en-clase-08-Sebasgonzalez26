@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Version>1.0.1</Version>
+		<PackageId>Autorizacion.Middleware.sebasgonzalez26</PackageId>
+		<AssemblyName>Autorizacion.Middleware.sebasgonzalez26</AssemblyName>
+		<RootNamespace>Autorizacion.Middleware.sebasgonzalez26</RootNamespace>
+		<Authors>Sebasgonzalez26</Authors>
+		<Description>Middleware de autorización por claims para ASP.NET Core 8</Description>
+		<RepositoryUrl>https://github.com/sebasgonzalez26/SC701</RepositoryUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Autorizacion.Abstracciones\Autorizacion.Abstracciones.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="/" />
+	</ItemGroup>
+
+</Project>
