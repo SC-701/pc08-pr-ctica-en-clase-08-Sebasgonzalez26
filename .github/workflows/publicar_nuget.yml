@@ -2,9 +2,9 @@ name: Publicar paquetes NuGet de Autorización
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
     paths:
-      - 'Seguridad/Seguridad.MiddlewareAutorizacion/**'
+      - "Seguridad/Seguridad.MiddlewareAutorizacion/**"
   workflow_dispatch:
 
 permissions:
@@ -21,7 +21,7 @@ jobs:
       - name: Setup .NET 8
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0'
+          dotnet-version: "8.0"
 
       - name: Restaurar dependencias
         run: |
