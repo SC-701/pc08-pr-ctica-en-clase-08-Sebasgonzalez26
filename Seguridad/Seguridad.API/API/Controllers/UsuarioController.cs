@@ -24,16 +24,20 @@ namespace API.Controllers
         {
             return Ok( await _usuarioFlujo.ObtenerUsuario(usuario));
         }
-
         [AllowAnonymous]
         [HttpPost("RegistrarUsuario")]
         public async Task<IActionResult> PostAsync([FromBody] UsuarioBase usuario)
         {
-            var resultado=await _usuarioFlujo.CrearUsuario(usuario);
-            return CreatedAtAction(nameof(ObtenerUsuario),null, resultado);
+            try
+            {
+                var resultado = await _usuarioFlujo.CrearUsuario(usuario);
+                return CreatedAtAction(nameof(ObtenerUsuario), null, resultado);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
-
-
 
 
     }
