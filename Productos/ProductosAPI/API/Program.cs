@@ -9,17 +9,16 @@ using Flujo;
 using Reglas;
 using Servicios;
 
-using Microsoft.AspNetCore.Authentication.JwtBearer;  
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;                 
+using System.Text;
 
 using Autorizacion.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
 var tokenConfig = builder.Configuration.GetSection("Token").Get<TokenConfiguracion>();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -32,14 +31,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidIssuer = tokenConfig.Issuer,
             ValidAudience = tokenConfig.Audience,
             IssuerSigningKey = new SymmetricSecurityKey(
-                                           Encoding.UTF8.GetBytes(tokenConfig.key))
+                Encoding.UTF8.GetBytes(tokenConfig.key))
         };
     });
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -51,8 +47,6 @@ builder.Services.AddHttpClient("BancoCentralCR");
 builder.Services.AddScoped<ITipoCambioServicio, TipoCambioServicio>();
 builder.Services.AddScoped<IProductoReglas, ProductoReglas>();
 
-
-
 builder.Services.AddTransient<Autorizacion.Abstracciones.Flujo.IAutorizacionFlujo,
                                Autorizacion.Flujo.AutorizacionFlujo>();
 builder.Services.AddTransient<Autorizacion.Abstracciones.DA.ISeguridadDA,
@@ -60,11 +54,8 @@ builder.Services.AddTransient<Autorizacion.Abstracciones.DA.ISeguridadDA,
 builder.Services.AddTransient<Autorizacion.Abstracciones.DA.IRepositorioDapper,
                                Autorizacion.DA.Repositorios.RepositorioDapper>();
 
-
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -73,8 +64,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.AutorizacionClaims();
-
+app.UseAuthentication();
+//app.AutorizacionClaims();
 app.UseAuthorization();
 
 app.MapControllers();
